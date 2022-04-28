@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import random
 
-
 cards = []
 picks = []
 combinations = []
