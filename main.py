@@ -68,8 +68,10 @@ histogramm.remove(histogramm[0])
 histogramm.reverse()
 # With certainty the best way to code this part
 
+for i in range(0, len(histogramm)-1):
+    print(str(i)+": " + str(histogramm[i]*100) + "%")
+    
 plt.bar([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],histogramm)
 plt.show()
 
-for i in range(0, len(histogramm)-1):
-    print(str(i)+": " + str(histogramm[i]*100) + "%")
+
