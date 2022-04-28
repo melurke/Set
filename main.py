@@ -61,12 +61,12 @@ for set in sets:
 for i in range(0, len(histogramm)):
     histogramm[i] = histogramm[i]/test
 
-if True:
-    x = histogramm[-1]
-    histogramm.reverse()
-    histogramm.append(x)
-    histogramm.remove(histogramm[0])
-    histogramm.reverse()
+x = histogramm[-1]
+histogramm.reverse()
+histogramm.append(x)
+histogramm.remove(histogramm[0])
+histogramm.reverse()
+# With certainty the best way to code this part
 
 plt.bar([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],histogramm)
 plt.show()
