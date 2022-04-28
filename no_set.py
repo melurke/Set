@@ -9,19 +9,6 @@ cards = []
 results = []
 test = [0, 0, 0, 0, 0, 0, 0]
 
-def set(cards):
-    test = [0, 0, 0, 0]
-
-    for i in range(0, 4):
-        for card in cards:
-    
-            test[i] += card[i]
-    test = [test[0]%3, test[1]%3, test[2]%3, test[3]%3]
-
-    if test == [0, 0, 0, 0]:
-        return True
-    return False
-
 def third_card(cards):
     third = [0, 0, 0, 0]
 
