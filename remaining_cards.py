@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 
 results = []
 test = [0, 0, 0, 0, 0, 0, 0, 0]
-num_of_tries = 10000
+num_of_tries = 100000
 
 def set(cards):
     test = [0, 0, 0, 0]
 
-    for i in range(0, 4):
+    for i in range(4):
         for card in cards:
             test[i] += card[i]
 
@@ -22,10 +22,8 @@ for ö in range(0, num_of_tries):
     if ö % (num_of_tries / 100) == 0:
         print(str(int((ö/num_of_tries)*100)) + "%")
     
-    cool = True
     all_cards = []
     cards = []
-    num_of_cards = 12 
     test1 = True
     no_cards_left = False
 
@@ -37,18 +35,18 @@ for ö in range(0, num_of_tries):
                     
     random.shuffle(all_cards)
 
-    for i in range(0, 12):
-            cards.append(all_cards[0])
-            all_cards.remove(all_cards[0])
+    for i in range(12):
+            cards.append(all_cards[-1])
+            all_cards.pop()
 
     while test1:
-        num_of_cards = len(cards)
         found_set = False
         counter = 0
         combinations = []
-        for o in range(0, num_of_cards):
-            for i in range(0, num_of_cards):
-                for u in range(0, num_of_cards):
+
+        for o in range(0, len(cards)):
+            for i in range(0, len(cards)):
+                for u in range(0, len(cards)):
                     if o != i and i != u and o != u:
                             combinations.append((o, i, u))
 
@@ -58,7 +56,6 @@ for ö in range(0, num_of_tries):
             if set(pick):
                 for card in pick:
                     cards.remove(card)
-                num_of_cards -= 3
                 found_set = True
                 counter += 1
                 break
@@ -70,16 +67,18 @@ for ö in range(0, num_of_tries):
         if not found_set and not no_cards_left:
             test1 = False
         elif not found_set:
-            for i in range(0, 3 * counter):
+            for i in range(3 * counter):
                 try:
-                    cards.append(all_cards[i])
-                    all_cards.remove(all_cards[0])
-                    num_of_cards += 3
+                    cards.append(all_cards[-1])
+                    all_cards.pop()
                 except:
                     no_cards_left = True
                     pass
 
-    results.append(len(cards))
+    if len(cards) == 3:
+        results.append(0)
+    else:
+        results.append(len(cards))
 
 for result in results:
     test[int(result/3)] += 1
