@@ -41,7 +41,7 @@ for ö in range(0, num_of_tries):
     random.shuffle(all_cards)
 
     for i in range(0, 12):
-            cards.append(all_cards[i])
+            cards.append(all_cards[0])
             all_cards.remove(all_cards[0])
 
     while test1:
