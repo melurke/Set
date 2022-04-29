@@ -3,10 +3,7 @@ import matplotlib.pyplot as plt
 
 results = []
 test = [0, 0, 0, 0, 0, 0, 0, 0]
-num_of_tries = 250
-no_cards_left = False
-test1 = True
-found_set = False
+num_of_tries = 10000
 
 def set(cards):
     test = [0, 0, 0, 0]
@@ -22,15 +19,15 @@ def set(cards):
     return False
 
 for ö in range(0, num_of_tries):
-    if ö % 10 == 0:
-        print(str((ö/num_of_tries)*100) + "%")
+    if ö % (num_of_tries / 100) == 0:
+        print(str(int((ö/num_of_tries)*100)) + "%")
     
-    counter = 0
     cool = True
     all_cards = []
     cards = []
-    combinations = []
-    num_of_cards = 12
+    num_of_cards = 12 
+    test1 = True
+    no_cards_left = False
 
     for i in range(0, 3):
         for n in range(0, 3):
@@ -47,6 +44,8 @@ for ö in range(0, num_of_tries):
     while test1:
         num_of_cards = len(cards)
         found_set = False
+        counter = 0
+        combinations = []
         for o in range(0, num_of_cards):
             for i in range(0, num_of_cards):
                 for u in range(0, num_of_cards):
@@ -55,7 +54,7 @@ for ö in range(0, num_of_tries):
 
         for combination in combinations:
             pick = [cards[combination[0]], cards[combination[1]], cards[combination[2]]]
-            
+         
             if set(pick):
                 for card in pick:
                     cards.remove(card)
@@ -68,10 +67,9 @@ for ö in range(0, num_of_tries):
                 no_cards_left == True
                 break
 
-        if not found_set and no_cards_left:
+        if not found_set and not no_cards_left:
             test1 = False
-
-        if not found_set:
+        elif not found_set:
             for i in range(0, 3 * counter):
                 try:
                     cards.append(all_cards[i])
@@ -82,7 +80,6 @@ for ö in range(0, num_of_tries):
                     pass
 
     results.append(len(cards))
-    print(cards)
 
 for result in results:
     test[int(result/3)] += 1
