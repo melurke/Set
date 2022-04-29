@@ -24,7 +24,9 @@ def set(cards):
 for ö in range(0, num_of_tries):
     if ö % 10 == 0:
         print(str((ö/num_of_tries)*100) + "%")
-
+    
+    counter = 0
+    cool = True
     all_cards = []
     cards = []
     combinations = []
@@ -52,37 +54,19 @@ for ö in range(0, num_of_tries):
                             combinations.append((o, i, u))
 
         for combination in combinations:
-            try:
-                pick = [cards[combination[0]], cards[combination[1]], cards[combination[2]]]
-                
-                if set(pick):
-                    for card in pick:
-                        cards.remove(card)
-                    num_of_cards -= 3
-                    found_set = True
-                if set(pick):
-                    for card in pick:
-                        cards.remove(card)
-                    num_of_cards -= 3
-                    found_set = True
-                if set(pick):
-                    for card in pick:
-                        cards.remove(card)
-                    num_of_cards -= 3
-                    found_set = True
-                if set(pick):
-                    for card in pick:
-                        cards.remove(card)
-                    num_of_cards -= 3
-                    found_set = True
-                    break
-            except:
-                pass
+            pick = [cards[combination[0]], cards[combination[1]], cards[combination[2]]]
+            
+            if set(pick):
+                for card in pick:
+                    cards.remove(card)
+                num_of_cards -= 3
+                found_set = True
+                counter += 1
 
         if not found_set and no_cards_left:
             test1 = False
 
-        for i in range(0, 3):
+        for i in range(0, 3 * counter):
             try:
                 cards.append(all_cards[i])
                 all_cards.remove(all_cards[0])
