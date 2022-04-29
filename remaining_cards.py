@@ -37,7 +37,6 @@ for ö in range(0, num_of_tries):
             for m in range(0, 3):
                 for k in range(0, 3):
                     all_cards.append((i, n, m, k))
-
     random.shuffle(all_cards)
 
     for i in range(0, 12):
