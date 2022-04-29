@@ -62,18 +62,24 @@ for ö in range(0, num_of_tries):
                 num_of_cards -= 3
                 found_set = True
                 counter += 1
+                break
+                
+            if cards == []:
+                no_cards_left == True
+                break
 
         if not found_set and no_cards_left:
             test1 = False
 
-        for i in range(0, 3 * counter):
-            try:
-                cards.append(all_cards[i])
-                all_cards.remove(all_cards[0])
-                num_of_cards += 3
-            except:
-                no_cards_left = True
-                pass
+        if not found_set:
+            for i in range(0, 3 * counter):
+                try:
+                    cards.append(all_cards[i])
+                    all_cards.remove(all_cards[0])
+                    num_of_cards += 3
+                except:
+                    no_cards_left = True
+                    pass
 
     results.append(len(cards))
     print(cards)
