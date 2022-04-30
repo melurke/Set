@@ -75,10 +75,7 @@ for ö in range(0, num_of_tries):
                     no_cards_left = True
                     pass
 
-    if len(cards) == 3:
-        results.append(0)
-    else:
-        results.append(len(cards))
+    results.append(len(cards))
 
 for result in results:
     test[int(result/3)] += 1
