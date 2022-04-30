@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 results = []
 test = [0, 0, 0, 0, 0, 0, 0, 0]
-num_of_tries = 100000
+num_of_tries = 10000
 
 def set(cards):
     test = [0, 0, 0, 0]
@@ -18,62 +18,55 @@ def set(cards):
         return True
     return False
 
-for ö in range(0, num_of_tries):
-    if ö % (num_of_tries / 100) == 0:
-        print(str(int((ö/num_of_tries)*100)) + "%")
-    
+for l in range(0, num_of_tries):
+    if l % (num_of_tries // 100) == 0:
+        print(str(int((l/num_of_tries)*100)) + "%")
+
     all_cards = []
     cards = []
-    test1 = True
-    no_cards_left = False
+    num_of_cards = 12
+    end_game = False
 
     for i in range(0, 3):
-        for n in range(0, 3):
-            for m in range(0, 3):
+        for m in range(0, 3):
+            for n in range(0, 3):
                 for k in range(0, 3):
-                    all_cards.append((i, n, m, k))
-                    
+                    all_cards.append([i, m, n, k])
+
     random.shuffle(all_cards)
 
-    for i in range(12):
-            cards.append(all_cards[-1])
-            all_cards.pop()
+    for i in range(0, num_of_cards):
+        cards.append(all_cards[-1])
+        all_cards.pop()
 
-    while test1:
-        found_set = False
-        counter = 0
+    while not end_game:
+        num_of_cards = len(cards)
         combinations = []
+        found_set = False
 
-        for o in range(0, len(cards)):
-            for i in range(0, len(cards)):
-                for u in range(0, len(cards)):
-                    if o != i and i != u and o != u:
-                            combinations.append((o, i, u))
+        for i in range(0, num_of_cards):
+            for k in range(0 ,num_of_cards):
+                for n in range(0, num_of_cards):
+                    if i != k and i != n and k != n:
+                        combinations.append([i, k, n])
 
         for combination in combinations:
             pick = [cards[combination[0]], cards[combination[1]], cards[combination[2]]]
-         
+
             if set(pick):
                 for card in pick:
                     cards.remove(card)
                 found_set = True
-                counter += 1
-                break
-                
-            if cards == []:
-                no_cards_left == True
                 break
 
-        if not found_set and not no_cards_left:
-            test1 = False
-        elif not found_set:
-            for i in range(3 * counter):
-                try:
-                    cards.append(all_cards[-1])
-                    all_cards.pop()
-                except:
-                    no_cards_left = True
-                    pass
+        for i in range(0, 3):
+            try:
+                cards.append(all_cards[-1])
+                all_cards.pop()
+            except:
+                if not found_set:
+                    end_game = True
+                pass
 
     results.append(len(cards))
 
