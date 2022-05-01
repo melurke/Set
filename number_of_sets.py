@@ -9,6 +9,7 @@ test = 0
 result = 0
 sets = []
 histogramm = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+num_of_tries = 10000
 
 for i in range(0, 3):
     for n in range(0, 3):
@@ -35,7 +36,10 @@ for o in range(0, 12):
             if o != i and i != u and o != u:
                     combinations.append((o, i, u))
 
-for i in range(0, 999):
+for i in range(0, num_of_tries):
+    if i % (num_of_tries // 100) == 0:
+        print(str(int((i/num_of_tries)*100)) + "%")
+        
     random.shuffle(cards)
     picks = []
     counter = 0
